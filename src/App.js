@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import Productsearch from './components/Productsearch';
+import React from "react";
+import "./App.css";
+import Productsearch from "./components/Productsearch";
 
 function App() {
   return (
