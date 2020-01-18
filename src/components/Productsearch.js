@@ -1,75 +1,84 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import { TextField, Card, CardContent, Typography } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import NumberFormat from "react-number-format";
+import "./Productsearch.css";
+import { URL } from "../components/config";
 
 class Productsearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
       errorMessage: "",
-      successMessage: "",
-      products: []
+      products: [],
+      alertShow: false
     };
-  }
-
-  // Disappear error message after 2000sec.
-  componentDidUpdate() {
-    setTimeout(() => this.setState({ errorMessage: "" }), 2000);
   }
 
   getProduct = e => {
     e.preventDefault();
     const productToSearch = e.target.elements.product.value;
     axios
-      .post(
-        `https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search?q=product.name:${productToSearch}`
-      )
+      .post(`${URL}?q=product.name:${productToSearch}`)
       .then(res => {
         console.log(res.data.hits.hits);
         this.setState({
           products: res.data.hits.hits,
-          successMessage: "Product list is as follow:"
+          alertShow: false
         });
       })
       .catch(error => {
         console.log(error);
         this.setState({
-          errorMessage: "Please fill in the product"
+          errorMessage: "Please fill in the Product Name",
+          alertShow: true
         });
       });
     e.target.reset(); // making input empty
   };
 
   render() {
-    if (!this.state.products) {
-      return <p>Loading products...</p>;
-    }
+    const { alertShow } = this.state;
+    const { errorMessage } = this.state;
+    const { products } = this.state;
     return (
       <div>
         <Helmet>
           <title>Product Search</title>
         </Helmet>
-        <h3>Product Search</h3>
-        <p style={{ color: "red" }}>{this.state.errorMessage}</p>
+        <div>{alertShow && <Alert severity="error">{errorMessage}</Alert>}</div>
         <form onSubmit={this.getProduct}>
-          <input type="text" name="product" placeholder="Enter Product..." />
-          <button>Get Product</button>
+          <TextField
+            id="standard-basic"
+            name="product"
+            label="Product"
+            placeholder="Search for ... e.g.apple"
+          />
         </form>
-        <p style={{ color: "green" }}>{this.state.successMessage}</p>
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.products.map(product => (
-              <tr>
-                {product._source && <td>{product._source.product.name}</td>}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="product-card">
+          {products.map(product => (
+            <Card style={{ width: 275, margin: "10px" }}>
+              <CardContent key={product._source.id}>
+                <Typography variant="h5" component="h2">
+                  {product._source && <div>{product._source.product.name}</div>}
+                </Typography>
+                <Typography color="textSecondary">
+                  Dropped Percentage: {product._source.price.diff_percentage}
+                  <br />
+                  Formatted Price:{" "}
+                  <NumberFormat
+                    value={product._source.price.offer}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    suffix={"kr"}
+                  />
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     );
   }
