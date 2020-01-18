@@ -61,6 +61,14 @@ class Productsearch extends Component {
           {products.map(product => (
             <Card style={{ width: 275, margin: "10px" }}>
               <CardContent key={product._source.id}>
+                {product._source.product.media.product_images ? (
+                  <img
+                    src={
+                      product._source.product.media.product_images.first[140]
+                    }
+                    alt="product"
+                  />
+                ) : null}
                 <Typography variant="h5" component="h2">
                   {product._source && <div>{product._source.product.name}</div>}
                 </Typography>
