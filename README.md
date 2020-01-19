@@ -1,4 +1,4 @@
-## Product Search 
+## Product Search  - [Live Demo]( https://truptigaonkar.github.io/product-search/)
 
 #### Technologies
 * Node
