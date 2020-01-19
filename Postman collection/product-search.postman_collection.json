@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "fe9f8a4a-46e6-4bfe-a349-f6fe88df1b2a",
+		"name": "product-search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search?q=product.name:apple",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search?q=product.name:apple",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "product.name:apple"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"product.name\": \"apple\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "content-t",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match_phrase_prefix\": {\n      \"product.name\": \"ap\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"minimum_should_match\": 1,\n      \"should\": [\n        {\n          \"match_phrase_prefix\": {\n            \"product.name\": {\n              \"query\": \"ap\",\n              \"boost\": 2\n            }\n          }\n        },\n        {\n          \"match_phrase_prefix\": {\n            \"store.name\": {\n              \"query\": \"ap\",\n              \"boost\": 2\n            }\n          }\n        }\n      ]\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"minimum_should_match\": 1,\n      \"should\": [\n        {\n          \"match_phrase_prefix\": {\n            \"product.name\": {\n              \"query\": \"ap\",\n              \"boost\": 2\n            }\n          }\n        },\n        {\n          \"match_phrase_prefix\": {\n            \"store.name\": {\n              \"query\": \"ap\",\n              \"boost\": 2\n            }\n          }\n        }\n      ],\n      \"must\": [\n        {\n          \"term\": {\n            \"product.category.path.id\": \"298\"\n          }\n        }\n      ]\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"aggs\": {\n    \"categories\": {\n      \"terms\": {\n        \"field\": \"product.category.path.id\",\n        \"size\": 20\n      }\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "https://search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m.eu-west-1.es.amazonaws.com/campaign-*-4-deals/_search",
+					"protocol": "https",
+					"host": [
+						"search-pj-campaigns-dykc3wbnqz22xvoiwp2ta5bk3m",
+						"eu-west-1",
+						"es",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"campaign-*-4-deals",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

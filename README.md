@@ -3,6 +3,7 @@
 #### Technologies
 * Node
 * React
+* Postman: to connect to APIs which helped me to retrieve data using post request and query given.
 
 #### Prerequisite
 * Node (https://nodejs.org/en/)
