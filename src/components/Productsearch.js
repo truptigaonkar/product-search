@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { TextField, Card, CardContent, Typography } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
-import NumberFormat from "react-number-format";
 import "./Productsearch.css";
 import { URL } from "../components/config";
+import Productlist from "../components/Productlist";
 
 class Productsearch extends Component {
   constructor(props) {
@@ -48,45 +46,28 @@ class Productsearch extends Component {
         <Helmet>
           <title>Product Search</title>
         </Helmet>
-        <div>{alertShow && <Alert severity="error">{errorMessage}</Alert>}</div>
-        <form onSubmit={this.getProduct}>
-          <TextField
-            id="standard-basic"
-            name="product"
-            label="Product"
-            placeholder="Search for ... e.g.apple"
-          />
-        </form>
-        <div className="product-card">
-          {products.map(product => (
-            <Card style={{ width: 275, margin: "10px" }}>
-              <CardContent key={product._source.id}>
-                {product._source.product.media.product_images ? (
-                  <img
-                    src={
-                      product._source.product.media.product_images.first[140]
-                    }
-                    alt="product"
-                  />
-                ) : null}
-                <Typography variant="h5" component="h2">
-                  {product._source && <div>{product._source.product.name}</div>}
-                </Typography>
-                <Typography color="textSecondary">
-                  Dropped Percentage: {product._source.price.diff_percentage}
-                  <br />
-                  Formatted Price:{" "}
-                  <NumberFormat
-                    value={product._source.price.offer}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    suffix={"kr"}
-                  />
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="message">
+          {alertShow && (
+            <div className="alert alert-warning">
+              <span>Warning! </span>
+              {errorMessage}
+            </div>
+          )}
         </div>
+        <div className="form">
+          <form onSubmit={this.getProduct}>
+            <input
+              type="text"
+              id="product"
+              className="form__field"
+              placeholder="Search here...."
+            />
+            <label for="product" className="form__label">
+              Search here....
+            </label>
+          </form>
+        </div>
+        <Productlist products={products} />
       </div>
     );
   }

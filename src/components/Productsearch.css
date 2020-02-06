@@ -1,5 +1,81 @@
-.product-card {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+
+  .form {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 200px;
+    margin:0 auto;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #d2d2d2;
+    outline: 0;
+    font-size: 16px;
+    color: #212121;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  label,
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 12px;
+    color: #9b9b9b;
+  }
+  
+  .form__field:focus ~ .form__label {
+    color: #337ab7;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    border-bottom: 2px solid #337ab7;
+  }
+
+/* Alert */
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300); 
+
+.alert {
+	margin: 10px 0px;
+	padding:12px;
+	border-radius: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: .9rem;
+	font-weight: 300;
+	letter-spacing: 1px;
 }
+
+.alert:hover {
+  cursor: pointer;
+}
+
+.alert-warning {
+  font-weight: bold;
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border: 1px solid darken(#FEEFB3, 15%);
+}
+
+.alert-warning:before {
+  content: '\f071';
+  font-family: 'FontAwesome';
+}
+
