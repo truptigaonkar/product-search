@@ -1,10 +1,10 @@
 import React from "react";
-import "./App.css";
+import Style from "./App.module.css";
 import Productsearch from "./components/Productsearch";
 
 function App() {
   return (
-    <div className="container">
+    <div className={Style.container}>
       <Productsearch />
     </div>
   );

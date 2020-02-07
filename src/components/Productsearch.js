@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import "./Productsearch.css";
+import Style from "./Productsearch.module.css";
 import { URL } from "../components/config";
 import Productlist from "../components/Productlist";
 
@@ -21,18 +21,28 @@ class Productsearch extends Component {
     axios
       .post(`${URL}?q=product.name:${productToSearch}`)
       .then(res => {
-        console.log(res.data.hits.hits);
+        console.log(res.status);
         this.setState({
           products: res.data.hits.hits,
           alertShow: false
         });
+        if (res.status === 200) {
+          this.setState({ errorMessage: "Empty array" });
+        }
       })
       .catch(error => {
-        console.log(error);
-        this.setState({
-          errorMessage: "Please fill in the Product Name",
-          alertShow: true
-        });
+        console.log("new", error);
+        if (error.response.status === 400) {
+          this.setState({
+            errorMessage: "Please fill in the Product Name",
+            alertShow: true
+          });
+        } else {
+          this.setState({
+            errorMessage: "Something went wrong",
+            alertShow: true
+          });
+        }
       });
     e.target.reset(); // making input empty
   };
@@ -41,28 +51,31 @@ class Productsearch extends Component {
     const { alertShow } = this.state;
     const { errorMessage } = this.state;
     const { products } = this.state;
+    if (products === null) {
+      return <p>Fetching product...</p>;
+    }
     return (
       <div>
         <Helmet>
           <title>Product Search</title>
         </Helmet>
-        <div className="message">
+        <div className={Style.message}>
           {alertShow && (
-            <div className="alert alert-warning">
+            <div className={`${Style.alert} ${Style.alertWarning}`}>
               <span>Warning! </span>
               {errorMessage}
             </div>
           )}
         </div>
-        <div className="form">
+        <div className={Style.form}>
           <form onSubmit={this.getProduct}>
             <input
               type="text"
               id="product"
-              className="form__field"
+              className={Style.form__field}
               placeholder="Search here...."
             />
-            <label for="product" className="form__label">
+            <label for="product" className={Style.form__label}>
               Search here....
             </label>
           </form>

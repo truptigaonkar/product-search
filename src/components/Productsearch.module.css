@@ -67,14 +67,14 @@
   cursor: pointer;
 }
 
-.alert-warning {
+.alertWarning {
   font-weight: bold;
   color: #9F6000;
   background-color: #FEEFB3;
   border: 1px solid darken(#FEEFB3, 15%);
 }
 
-.alert-warning:before {
+.alertWarning:before {
   content: '\f071';
   font-family: 'FontAwesome';
 }
